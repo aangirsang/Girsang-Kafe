@@ -24,6 +24,8 @@ public class BahanBakuDialog extends javax.swing.JDialog {
         initComponents();
         initListener();
         TextComponentUtils.setAutoUpperCaseText(100, txtNamaBahanBaku);
+        TextComponentUtils.setAutoUpperCaseText(100, txtSatuanBeli);
+        TextComponentUtils.setAutoUpperCaseText(100, txtSatuanPakai);
     }
     public BahanBaku showDialog(BahanBaku bB){
         clear();
@@ -50,6 +52,7 @@ public class BahanBakuDialog extends javax.swing.JDialog {
         txtStok.setText("");
         txtSatuanBeli.setText("");
         txtSatuanPakai.setText("");
+        txtIsiSatuanBeli.setText("");
         
         lblSatuanBeli.setText("");
         lblSatuanPakai.setText("");
@@ -57,10 +60,11 @@ public class BahanBakuDialog extends javax.swing.JDialog {
     
     private void loadModelToFom(){
         txtNamaBahanBaku.setText(bahanBaku.getNamaBahanBaku());
-        cboSatuanBeli.setSelectedItem(bahanBaku.getSatuanBeli());
         txtStok.setText(bahanBaku.getStok().toString());
-        cboSatuanPakai.setSelectedItem(bahanBaku.getSatuanPakai());
+        txtSatuanBeli.setText(bahanBaku.getSatuanBeli());
+        txtSatuanPakai.setText(bahanBaku.getSatuanPakai());
         txtIsiSatuanBeli.setText(bahanBaku.getIsiSatuanBeli().toString());
+        
     }
     private boolean validasiSimpan(){
         if(txtNamaBahanBaku.getText().isEmpty()){
