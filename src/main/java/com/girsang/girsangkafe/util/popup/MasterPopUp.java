@@ -8,15 +8,15 @@ package com.girsang.girsangkafe.util.popup;
 import com.girsang.girsangkafe.UI.master.NomorMejaPanel;
 import com.girsang.girsangkafe.UI.master.karyawan.JabatanPanel;
 import com.girsang.girsangkafe.UI.master.karyawan.KaryawanPanel;
-import com.girsang.girsangkafe.UI.master.karyawan.MenuAksesPanel;
+import com.girsang.girsangkafe.UI.security.MenuAksesPanel;
 import com.girsang.girsangkafe.UI.menu.BahanBakuPanel;
 import com.girsang.girsangkafe.UI.menu.KategoriMenuPanel;
+import com.girsang.girsangkafe.UI.menu.MenuPanel;
 import com.girsang.girsangkafe.util.PesanJO;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
@@ -39,6 +39,7 @@ public class MasterPopUp extends AbstractButton{
     KategoriMenuPanel kategoriMenuPanel = new KategoriMenuPanel();
     NomorMejaPanel nomorMejaPanel = new NomorMejaPanel();
     BahanBakuPanel bahanBakuPanel = new BahanBakuPanel();
+    MenuPanel menuPanel = new MenuPanel();
     
     
     public MasterPopUp(JTabbedPane TP, JPopupMenu popupMenuMaster, JButton btnMaster) {
@@ -165,6 +166,27 @@ public class MasterPopUp extends AbstractButton{
                 TP.remove(bahanBakuPanel);
                 bahanBakuPanel.setAktifPanel(bahanBakuPanel.getAktifPanel() - 1);
                 TP.setSelectedIndex(bahanBakuPanel.getIndexTab() -1);
+                });
+                }
+            }
+        }));
+        popupMenuMaster.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.MENU) {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (menuPanel.getAktifPanel() == 1) {
+                TP.setSelectedIndex(menuPanel.getIndexTab());
+                } else {
+                menuPanel = new MenuPanel();
+                menuPanel.setName(PesanJO.namaTab.MENU);
+                menuPanel.setAktifPanel(menuPanel.getAktifPanel() + 1);
+                TP.addTab(menuPanel.getName(), menuPanel);
+                menuPanel.setIndexTab(TP.getTabCount() - 1);
+                TP.setSelectedIndex(menuPanel.getIndexTab());
+
+                menuPanel.getBtnTutup().addActionListener((ae1) -> {
+                TP.remove(menuPanel);
+                menuPanel.setAktifPanel(menuPanel.getAktifPanel() - 1);
+                TP.setSelectedIndex(menuPanel.getIndexTab() -1);
                 });
                 }
             }

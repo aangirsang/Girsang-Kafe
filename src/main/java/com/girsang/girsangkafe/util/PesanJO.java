@@ -24,6 +24,7 @@ public interface PesanJO {
         String TANYA_UBAH ="Anda Yakin Ingin Menyimpan Perubahan Data Ini?";
         String DATA_TIDAK_LENGKAP = "Data Belum Lengkap, Silahkan Lengkapi Data Terlebih Dahulu";
         String HAPUS_DATA = "Apakah Anda Yakin Ingin Menghapus Data Ini?";
+        String DATA_BAHANBAKU_SUDAH_ADA = "Bahan Baku Sudah Ada Ditambahkan";
     }
     
     interface namaTab{

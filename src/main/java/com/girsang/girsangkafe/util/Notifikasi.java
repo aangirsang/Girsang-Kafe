@@ -36,6 +36,12 @@ public class Notifikasi {
                 PesanJO.pesan.PERHATIAN_TITLE, 
                 JOptionPane.ERROR_MESSAGE);
     }
+    public static void pesanBahanBakuSudahAda(){
+        JOptionPane.showMessageDialog(null, 
+                PesanJO.pesan.DATA_BAHANBAKU_SUDAH_ADA, 
+                PesanJO.pesan.PERHATIAN_TITLE, 
+                JOptionPane.ERROR_MESSAGE);
+    }
     public static void pesanAkun(){
         JOptionPane.showMessageDialog(null, 
                 PesanJO.pesan.DATA_AKUN, 

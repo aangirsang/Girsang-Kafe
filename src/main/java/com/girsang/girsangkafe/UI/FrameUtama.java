@@ -65,8 +65,8 @@ public class FrameUtama extends javax.swing.JFrame {
         t.start();
     }
     private void clear() {
-        txtUsername.setText("");
-        txtPass.setText("");
+        txtUsername.setText("admin");
+        txtPass.setText("admin");
     }
     private Karyawan login() {
         Karyawan k = GirsangKafe.getMasterService().cariNamaAkun(txtUsername.getText());
@@ -309,6 +309,7 @@ public class FrameUtama extends javax.swing.JFrame {
         jToolBar3.setFloatable(false);
         jToolBar3.setRollover(true);
 
+        btnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/Keluar 32.png"))); // NOI18N
         btnKeluar.setText("Keluar");
         btnKeluar.setFocusable(false);
         btnKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

@@ -31,7 +31,9 @@ public class MenuDetail implements Serializable{
     @JoinColumn(name = "bahanBaku",nullable = false)
     private BahanBaku bahanBaku;
     
-    private Integer jumlah = 0;
+    private String satuanPakai;
+    
+    private Integer jumlahPakai = 0;
 
     //<editor-fold defaultstate="collapsed" desc="Getter Setter">
     public String getId() {
@@ -57,13 +59,19 @@ public class MenuDetail implements Serializable{
     public void setBahanBaku(BahanBaku bahanBaku) {
         this.bahanBaku = bahanBaku;
     }
+    public String getSatuanPakai(){
+        return satuanPakai;
+    }
     
+    public void setSatuanPakai(String satuanPakai){
+        this.satuanPakai = satuanPakai;
+    }
     public Integer getJumlah() {
-        return jumlah;
+        return jumlahPakai;
     }
     
     public void setJumlah(Integer jumlah) {
-        this.jumlah = jumlah;
+        this.jumlahPakai = jumlah;
     }
     //</editor-fold>
     

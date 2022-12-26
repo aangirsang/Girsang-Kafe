@@ -1,4 +1,4 @@
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_C373PLK3ADWDXXGD08XGGS4MQ" already exists; SQL statement:
 
     alter table ListMenuAkses 
@@ -22,7 +22,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_C373PLK3ADWDXXGD08XGGS4M
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:305)
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:294)
 	at com.girsang.girsangkafe.GenerateDatabase.main(GenerateDatabase.java:36)
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "BAHANBAKU" because "FK_90TSROGMXD753NLVBOQ8JUIBV, FK_A5HW4UGUTYQAE3RIPDRPMXC3E" depends on it; SQL statement:
 
     drop table BahanBaku if e [90107-214]
@@ -41,7 +41,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "BAHANBAKU" because "FK_90T
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:305)
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:294)
 	at com.girsang.girsangkafe.GenerateDatabase.main(GenerateDatabase.java:41)
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "JABATAN" because "FK_BIFQ9NFBFAEFBK7U1ITLWBNG7, FK_1YR4V6A9RLPS3BQJ4CFDFDB6J" depends on it; SQL statement:
 
     drop table Jabatan if e [90107-214]
@@ -60,7 +60,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "JABATAN" because "FK_BIFQ9
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:305)
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:294)
 	at com.girsang.girsangkafe.GenerateDatabase.main(GenerateDatabase.java:41)
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "MENU" because "FK_4TJJWN0THY2PXGM3GBM5AWKU4" depends on it; SQL statement:
 
     drop table Menu if e [90107-214]
@@ -79,7 +79,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "MENU" because "FK_4TJJWN0T
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:305)
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:294)
 	at com.girsang.girsangkafe.GenerateDatabase.main(GenerateDatabase.java:41)
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAHANBAKU" already exists; SQL statement:
 
     create table BahanBaku (
@@ -91,7 +91,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAHANBAKU" already exists; SQL s
         stok integer,
         primary key (id)
  [42101-214]
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "JABATAN" already exists; SQL statement:
 
     create table Jabatan (
@@ -99,7 +99,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "JABATAN" already exists; SQL sta
         jabatan varchar(255) not null,
         primary key (id)
  [42101-214]
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MENU" already exists; SQL statement:
 
     create table Menu (
@@ -109,7 +109,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MENU" already exists; SQL statem
         namaMenu varchar(255) not null,
         primary key (id)
  [42101-214]
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "UK_78IAWNWJ4GOWFY9OE276XJJ9D" already exists; SQL statement:
 
     alter table Jabatan 
@@ -131,7 +131,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "UK_78IAWNWJ4GOWFY9OE276XJJ9
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:305)
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:294)
 	at com.girsang.girsangkafe.GenerateDatabase.main(GenerateDatabase.java:41)
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "UK_6WSRIVJ5B6GYDN8WH0DQNTH0W" already exists; SQL statement:
 
     alter table Menu 
@@ -153,7 +153,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "UK_6WSRIVJ5B6GYDN8WH0DQNTH0
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:305)
 	at org.hibernate.tool.hbm2ddl.SchemaExport.create(SchemaExport.java:294)
 	at com.girsang.girsangkafe.GenerateDatabase.main(GenerateDatabase.java:41)
-2022-12-23 09:58:54 jdbc[3]: exception
+2022-12-26 14:26:02 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_C373PLK3ADWDXXGD08XGGS4MQ" already exists; SQL statement:
 
     alter table ListMenuAkses 

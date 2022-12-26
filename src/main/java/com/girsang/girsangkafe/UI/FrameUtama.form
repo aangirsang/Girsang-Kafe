@@ -360,6 +360,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnKeluar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Gambar/Keluar 32.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Keluar"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>

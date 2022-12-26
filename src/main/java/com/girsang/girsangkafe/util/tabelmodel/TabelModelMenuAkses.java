@@ -25,7 +25,7 @@ public class TabelModelMenuAkses extends AbstractTableModel{
     public String getColumnName(int col){
         switch(col){
             case (0):return "ID";
-            case (1):return "Menu Akses";
+            case (1):return "Hak Akses";
             default:return"";
         }
     }

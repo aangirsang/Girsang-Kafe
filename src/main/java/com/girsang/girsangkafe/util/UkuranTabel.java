@@ -45,7 +45,6 @@ public class UkuranTabel extends JTable{
         tabel.getColumnModel().getColumn(0).setPreferredWidth(0);
         tabel.getColumnModel().getColumn(1).setPreferredWidth(300);//Bahan Baku
         tabel.getColumnModel().getColumn(2).setPreferredWidth(100);//Stok
-        tabel.getColumnModel().getColumn(3).setPreferredWidth(200);//Satuan
         return tabel;
     }
     public JTable UkuranTabelNomorMeja(JTable tabel) {
@@ -75,5 +74,28 @@ public class UkuranTabel extends JTable{
         tabel.getColumnModel().getColumn(8).setPreferredWidth(200);//Nama Akun
         return tabel;
     }
+       public JTable UkuranTabelMenu(JTable tabel) {
+        this.tabel = tabel;
+        tabel.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
+        tabel.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabel.getColumnModel().getColumn(0).setMinWidth(0);
+        tabel.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tabel.getColumnModel().getColumn(1).setPreferredWidth(600);//Menu
+        tabel.getColumnModel().getColumn(2).setPreferredWidth(300);//Kategori Menu
+        tabel.getColumnModel().getColumn(3).setPreferredWidth(100);//Harga
+        return tabel;
+    }
+    public JTable UkuranTabelMenuDetail(JTable tabel) {
+        this.tabel = tabel;
+        tabel.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        tabel.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabel.getColumnModel().getColumn(0).setMinWidth(0);
+        tabel.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tabel.getColumnModel().getColumn(1).setPreferredWidth(200);//Bahan Baku
+        tabel.getColumnModel().getColumn(2).setPreferredWidth(100);//Satuan Pakai
+        tabel.getColumnModel().getColumn(3).setPreferredWidth(70);//Jumlah
+        return tabel;
+    }
 }

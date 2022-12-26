@@ -7,6 +7,10 @@ import com.girsang.girsangkafe.util.Notifikasi;
 import com.girsang.girsangkafe.util.PesanJO;
 import com.girsang.girsangkafe.util.TextComponentUtils;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +23,6 @@ public class BahanBakuDialog extends javax.swing.JDialog {
         super(FrameUtama.getInstance(), true);
         initComponents();
         initListener();
-        isiCombo();
         TextComponentUtils.setAutoUpperCaseText(100, txtNamaBahanBaku);
     }
     public BahanBaku showDialog(BahanBaku bB){
@@ -42,37 +45,21 @@ public class BahanBakuDialog extends javax.swing.JDialog {
         return bahanBaku;
     }
     
-    private void isiCombo(){
-        cboSatuanBeli.removeAllItems();
-        cboSatuanBeli.addItem("Botol");
-        cboSatuanBeli.addItem("Dusin");
-        cboSatuanBeli.addItem("Kotak");
-        cboSatuanBeli.addItem("Kilogram");
-        cboSatuanBeli.addItem("Pack");
-        cboSatuanBeli.addItem("Toples");
-        cboSatuanBeli.setSelectedItem(null);
-        
-        cboSatuanPakai.removeAllItems();
-        cboSatuanPakai.addItem("Gram");
-        cboSatuanPakai.addItem("Pcs");
-        cboSatuanPakai.setSelectedItem(null);
-        
-        
-    }
     private void clear(){
         txtNamaBahanBaku.setText("");
         txtStok.setText("");
-        txtIsiSatuanBeli.setText("");
+        txtSatuanBeli.setText("");
+        txtSatuanPakai.setText("");
         
         lblSatuanBeli.setText("");
         lblSatuanPakai.setText("");
-        
     }
+    
     private void loadModelToFom(){
         txtNamaBahanBaku.setText(bahanBaku.getNamaBahanBaku());
-        cboSatuanPakai.setSelectedItem(bahanBaku.getSatuanPakai());
         cboSatuanBeli.setSelectedItem(bahanBaku.getSatuanBeli());
         txtStok.setText(bahanBaku.getStok().toString());
+        cboSatuanPakai.setSelectedItem(bahanBaku.getSatuanPakai());
         txtIsiSatuanBeli.setText(bahanBaku.getIsiSatuanBeli().toString());
     }
     private boolean validasiSimpan(){
@@ -84,10 +71,10 @@ public class BahanBakuDialog extends javax.swing.JDialog {
     }
     private void loadFormToModel(BahanBaku bB){
             bB.setNamaBahanBaku(txtNamaBahanBaku.getText());
-            bB.setSatuanPakai((String) cboSatuanPakai.getSelectedItem());
-            bB.setSatuanBeli(cboSatuanBeli.getSelectedItem().toString());
+            bB.setSatuanBeli(txtSatuanBeli.getText());
             bB.setStok(Integer.parseInt(txtStok.getText()));
-            bB.setIsiSatuanBeli(Integer.parseInt(txtIsiSatuanBeli.getText()));
+            bB.setSatuanPakai(txtSatuanPakai.getText());
+            bB.setIsiSatuanBeli(Integer.valueOf(txtIsiSatuanBeli.getText()));
     }
     private void initListener(){
         btnBatal.addActionListener((ActionEvent ae) -> {
@@ -103,6 +90,34 @@ public class BahanBakuDialog extends javax.swing.JDialog {
                 dispose();
             }
         });
+        txtSatuanBeli.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                lblSatuanBeli.setText(txtSatuanBeli.getText());
+            }
+        });
+        txtSatuanPakai.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                lblSatuanPakai.setText(txtSatuanPakai.getText());
+            }
+        });
     }
     
     @SuppressWarnings("unchecked")
@@ -116,15 +131,14 @@ public class BahanBakuDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         txtNamaBahanBaku = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        cboSatuanBeli = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtStok = new javax.swing.JTextField();
-        lblSatuanPakai = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        cboSatuanPakai = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        txtIsiSatuanBeli = new javax.swing.JTextField();
         lblSatuanBeli = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtIsiSatuanBeli = new javax.swing.JTextField();
+        lblSatuanPakai = new javax.swing.JLabel();
+        txtSatuanPakai = new javax.swing.JTextField();
+        txtSatuanBeli = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -166,23 +180,21 @@ public class BahanBakuDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Satuan Beli");
 
-        cboSatuanBeli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel3.setText("Stok");
 
         txtStok.setText("jTextField1");
 
-        lblSatuanPakai.setText("jLabel4");
+        lblSatuanBeli.setText("jLabel6");
 
         jLabel4.setText("Satuan Pakai");
 
-        cboSatuanPakai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel5.setText("Isi");
-
         txtIsiSatuanBeli.setText("jTextField1");
 
-        lblSatuanBeli.setText("jLabel6");
+        lblSatuanPakai.setText("jLabel6");
+
+        txtSatuanPakai.setText("jTextField1");
+
+        txtSatuanBeli.setText("jTextField2");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -191,26 +203,28 @@ public class BahanBakuDialog extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(30, 30, 30))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(cboSatuanBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtIsiSatuanBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblSatuanPakai))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblSatuanBeli))
                     .addComponent(txtNamaBahanBaku, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboSatuanPakai, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtSatuanBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtIsiSatuanBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSatuanPakai))
+                    .addComponent(txtSatuanPakai, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -221,22 +235,21 @@ public class BahanBakuDialog extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(txtNamaBahanBaku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtSatuanPakai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cboSatuanBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
                     .addComponent(txtIsiSatuanBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSatuanPakai))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cboSatuanPakai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblSatuanPakai)
+                    .addComponent(txtSatuanBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSatuanBeli))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,19 +281,18 @@ public class BahanBakuDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JComboBox<String> cboSatuanBeli;
-    private javax.swing.JComboBox<String> cboSatuanPakai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblSatuanBeli;
     private javax.swing.JLabel lblSatuanPakai;
     private javax.swing.JTextField txtIsiSatuanBeli;
     private javax.swing.JTextField txtNamaBahanBaku;
+    private javax.swing.JTextField txtSatuanBeli;
+    private javax.swing.JTextField txtSatuanPakai;
     private javax.swing.JTextField txtStok;
     // End of variables declaration//GEN-END:variables
 }

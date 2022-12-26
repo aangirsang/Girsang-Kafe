@@ -32,6 +32,7 @@ public class Menu implements Serializable{
     private String namaMenu;
     
    private KategoriMenu kategoriMenu;
+   
    private BigDecimal harga = BigDecimal.ZERO;
    
    @OneToMany(mappedBy = "menu",cascade = CascadeType.ALL)

@@ -146,14 +146,11 @@ public class KaryawanDialog extends javax.swing.JDialog {
                 dispose();
             }
         });
-        cboJabatan.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (cboJabatan.getSelectedIndex() >= 0) {
-                    jabatan = jabatans.get(cboJabatan.getSelectedIndex());
-                } else {
-                    jabatan = null;
-                }
+        cboJabatan.addItemListener((ItemEvent e) -> {
+            if (cboJabatan.getSelectedIndex() >= 0) {
+                jabatan = jabatans.get(cboJabatan.getSelectedIndex());
+            } else {
+                jabatan = null;
             }
         });
     }
