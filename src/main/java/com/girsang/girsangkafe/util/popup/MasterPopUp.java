@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
@@ -25,12 +26,13 @@ import javax.swing.JTabbedPane;
  *
  * @author User
  */
-public class MasterPopUp extends AbstractButton{
+public final class MasterPopUp extends AbstractButton{
     
     
     JButton actionButton;
     JPopupMenu popUpMenu;
-    JMenuItem menuKaryawan;
+    JMenu menuKaryawan;
+    JMenu menuMenu;
     JTabbedPane TP;
     
     MenuAksesPanel menuAksesPanel = new MenuAksesPanel();
@@ -44,6 +46,8 @@ public class MasterPopUp extends AbstractButton{
     
     public MasterPopUp(JTabbedPane TP, JPopupMenu popupMenuMaster, JButton btnMaster) {
         this.TP = TP;
+        popupMenuMaster.add(menuKaryawan());
+        popupMenuMaster.add(menuMenu());
         popupMenuMaster.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.MENUAKSES) {
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -61,69 +65,6 @@ public class MasterPopUp extends AbstractButton{
                 TP.remove(menuAksesPanel);
                 menuAksesPanel.setAktifPanel(menuAksesPanel.getAktifPanel() - 1);
                 TP.setSelectedIndex(menuAksesPanel.getIndexTab() -1);
-                });
-                }
-            }
-        }));
-        popupMenuMaster.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.JABATAN) {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            if (jabatanPanel.getAktifPanel() == 1) {
-                TP.setSelectedIndex(jabatanPanel.getIndexTab());
-                } else {
-                jabatanPanel = new JabatanPanel();
-                jabatanPanel.setName(PesanJO.namaTab.JABATAN);
-                jabatanPanel.setAktifPanel(jabatanPanel.getAktifPanel() + 1);
-                TP.addTab(jabatanPanel.getName(), jabatanPanel);
-                jabatanPanel.setIndexTab(TP.getTabCount() - 1);
-                TP.setSelectedIndex(jabatanPanel.getIndexTab());
-
-                jabatanPanel.getBtnTutup().addActionListener((ae1) -> {
-                TP.remove(jabatanPanel);
-                jabatanPanel.setAktifPanel(jabatanPanel.getAktifPanel() - 1);
-                TP.setSelectedIndex(jabatanPanel.getIndexTab() -1);
-                });
-                }
-            }
-        }));
-        popupMenuMaster.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.KARYAWAN) {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            if (karyawanPanel.getAktifPanel() == 1) {
-                TP.setSelectedIndex(karyawanPanel.getIndexTab());
-                } else {
-                karyawanPanel = new KaryawanPanel();
-                karyawanPanel.setName(PesanJO.namaTab.KARYAWAN);
-                karyawanPanel.setAktifPanel(karyawanPanel.getAktifPanel() + 1);
-                TP.addTab(karyawanPanel.getName(), karyawanPanel);
-                karyawanPanel.setIndexTab(TP.getTabCount() - 1);
-                TP.setSelectedIndex(karyawanPanel.getIndexTab());
-
-                karyawanPanel.getBtnTutup().addActionListener((ae1) -> {
-                TP.remove(karyawanPanel);
-                karyawanPanel.setAktifPanel(karyawanPanel.getAktifPanel() - 1);
-                TP.setSelectedIndex(karyawanPanel.getIndexTab() -1);
-                });
-                }
-            }
-        }));
-        popupMenuMaster.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.KATEGORI_MENU) {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            if (kategoriMenuPanel.getAktifPanel() == 1) {
-                TP.setSelectedIndex(kategoriMenuPanel.getIndexTab());
-                } else {
-                kategoriMenuPanel = new KategoriMenuPanel();
-                kategoriMenuPanel.setName(PesanJO.namaTab.KATEGORI_MENU);
-                kategoriMenuPanel.setAktifPanel(kategoriMenuPanel.getAktifPanel() + 1);
-                TP.addTab(kategoriMenuPanel.getName(), kategoriMenuPanel);
-                kategoriMenuPanel.setIndexTab(TP.getTabCount() - 1);
-                TP.setSelectedIndex(kategoriMenuPanel.getIndexTab());
-
-                kategoriMenuPanel.getBtnTutup().addActionListener((ae1) -> {
-                TP.remove(kategoriMenuPanel);
-                kategoriMenuPanel.setAktifPanel(kategoriMenuPanel.getAktifPanel() - 1);
-                TP.setSelectedIndex(kategoriMenuPanel.getIndexTab() -1);
                 });
                 }
             }
@@ -149,28 +90,80 @@ public class MasterPopUp extends AbstractButton{
                 }
             }
         }));
-        popupMenuMaster.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.BAHANBAKU) {
+        btnMaster.addActionListener((ae) -> {
+            popupMenuMaster.show(btnMaster, 0, btnMaster.getSize().height);
+        });
+    }
+    public JMenuItem menuKaryawan(){
+        menuKaryawan = new JMenu(PesanJO.namaMenu.DATA_KARYAWAN);
+        menuKaryawan.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.JABATAN) {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (bahanBakuPanel.getAktifPanel() == 1) {
-                TP.setSelectedIndex(bahanBakuPanel.getIndexTab());
+            if (jabatanPanel.getAktifPanel() == 1) {
+                TP.setSelectedIndex(jabatanPanel.getIndexTab());
                 } else {
-                bahanBakuPanel = new BahanBakuPanel();
-                bahanBakuPanel.setName(PesanJO.namaTab.BAHANBAKU);
-                bahanBakuPanel.setAktifPanel(bahanBakuPanel.getAktifPanel() + 1);
-                TP.addTab(bahanBakuPanel.getName(), bahanBakuPanel);
-                bahanBakuPanel.setIndexTab(TP.getTabCount() - 1);
-                TP.setSelectedIndex(bahanBakuPanel.getIndexTab());
+                jabatanPanel = new JabatanPanel();
+                jabatanPanel.setName(PesanJO.namaTab.JABATAN);
+                jabatanPanel.setAktifPanel(jabatanPanel.getAktifPanel() + 1);
+                TP.addTab(jabatanPanel.getName(), jabatanPanel);
+                jabatanPanel.setIndexTab(TP.getTabCount() - 1);
+                TP.setSelectedIndex(jabatanPanel.getIndexTab());
 
-                bahanBakuPanel.getBtnTutup().addActionListener((ae1) -> {
-                TP.remove(bahanBakuPanel);
-                bahanBakuPanel.setAktifPanel(bahanBakuPanel.getAktifPanel() - 1);
-                TP.setSelectedIndex(bahanBakuPanel.getIndexTab() -1);
+                jabatanPanel.getBtnTutup().addActionListener((ae1) -> {
+                TP.remove(jabatanPanel);
+                jabatanPanel.setAktifPanel(jabatanPanel.getAktifPanel() - 1);
+                TP.setSelectedIndex(jabatanPanel.getIndexTab() -1);
                 });
                 }
             }
         }));
-        popupMenuMaster.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.MENU) {
+        menuKaryawan.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.KARYAWAN) {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (karyawanPanel.getAktifPanel() == 1) {
+                TP.setSelectedIndex(karyawanPanel.getIndexTab());
+                } else {
+                karyawanPanel = new KaryawanPanel();
+                karyawanPanel.setName(PesanJO.namaTab.KARYAWAN);
+                karyawanPanel.setAktifPanel(karyawanPanel.getAktifPanel() + 1);
+                TP.addTab(karyawanPanel.getName(), karyawanPanel);
+                karyawanPanel.setIndexTab(TP.getTabCount() - 1);
+                TP.setSelectedIndex(karyawanPanel.getIndexTab());
+
+                karyawanPanel.getBtnTutup().addActionListener((ae1) -> {
+                TP.remove(karyawanPanel);
+                karyawanPanel.setAktifPanel(karyawanPanel.getAktifPanel() - 1);
+                TP.setSelectedIndex(karyawanPanel.getIndexTab() -1);
+                });
+                }
+            }
+        }));
+        return menuKaryawan;
+    }
+    public JMenuItem menuMenu(){
+        menuMenu = new JMenu(PesanJO.namaMenu.DATA_MENU);
+        menuMenu.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.KATEGORI_MENU) {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (kategoriMenuPanel.getAktifPanel() == 1) {
+                TP.setSelectedIndex(kategoriMenuPanel.getIndexTab());
+                } else {
+                kategoriMenuPanel = new KategoriMenuPanel();
+                kategoriMenuPanel.setName(PesanJO.namaTab.KATEGORI_MENU);
+                kategoriMenuPanel.setAktifPanel(kategoriMenuPanel.getAktifPanel() + 1);
+                TP.addTab(kategoriMenuPanel.getName(), kategoriMenuPanel);
+                kategoriMenuPanel.setIndexTab(TP.getTabCount() - 1);
+                TP.setSelectedIndex(kategoriMenuPanel.getIndexTab());
+
+                kategoriMenuPanel.getBtnTutup().addActionListener((ae1) -> {
+                TP.remove(kategoriMenuPanel);
+                kategoriMenuPanel.setAktifPanel(kategoriMenuPanel.getAktifPanel() - 1);
+                TP.setSelectedIndex(kategoriMenuPanel.getIndexTab() -1);
+                });
+                }
+            }
+        }));
+        menuMenu.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.MENU) {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (menuPanel.getAktifPanel() == 1) {
@@ -191,9 +184,27 @@ public class MasterPopUp extends AbstractButton{
                 }
             }
         }));
-        btnMaster.addActionListener((ae) -> {
-            popupMenuMaster.show(btnMaster, 0, btnMaster.getSize().height);
-        });
+        menuMenu.add(new JMenuItem(new AbstractAction(PesanJO.namaMenu.BAHANBAKU) {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (bahanBakuPanel.getAktifPanel() == 1) {
+                TP.setSelectedIndex(bahanBakuPanel.getIndexTab());
+                } else {
+                bahanBakuPanel = new BahanBakuPanel();
+                bahanBakuPanel.setName(PesanJO.namaTab.BAHANBAKU);
+                bahanBakuPanel.setAktifPanel(bahanBakuPanel.getAktifPanel() + 1);
+                TP.addTab(bahanBakuPanel.getName(), bahanBakuPanel);
+                bahanBakuPanel.setIndexTab(TP.getTabCount() - 1);
+                TP.setSelectedIndex(bahanBakuPanel.getIndexTab());
+
+                bahanBakuPanel.getBtnTutup().addActionListener((ae1) -> {
+                TP.remove(bahanBakuPanel);
+                bahanBakuPanel.setAktifPanel(bahanBakuPanel.getAktifPanel() - 1);
+                TP.setSelectedIndex(bahanBakuPanel.getIndexTab() -1);
+                });
+                }
+            }
+        }));
+        return menuMenu;
     }
-    
 }

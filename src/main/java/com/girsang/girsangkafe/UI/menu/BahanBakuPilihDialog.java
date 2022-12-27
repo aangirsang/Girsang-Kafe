@@ -133,19 +133,19 @@ public class BahanBakuPilihDialog extends javax.swing.JDialog {
     }
             
     private void addPopupmenu(){
-        popup.add(new JMenuItem(new AbstractAction("Tambah Kategori Menu") {
+        popup.add(new JMenuItem(new AbstractAction("Pilih Bahan Baku") {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                baruBahanBaku();
+                pilihBahanBaku();
             }
         }));
-        popup.add(new JMenuItem(new AbstractAction("Edit Kategori Menu") {
+        popup.add(new JMenuItem(new AbstractAction("Edit Bahan Baku") {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 editBahanBaku();
             }
         }));
-        popup.add(new JMenuItem(new AbstractAction("Hapus Kategori Menu") {
+        popup.add(new JMenuItem(new AbstractAction("Hapus Bahan Baku") {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 hapusBahanBaku();
@@ -182,7 +182,7 @@ public class BahanBakuPilihDialog extends javax.swing.JDialog {
             @Override
             public void mouseClicked(MouseEvent me) {
                 if (me.getClickCount() == 2) {
-                    editBahanBaku();
+                    pilihBahanBaku();
                 }
             }
         });

@@ -17,13 +17,13 @@ import org.hibernate.annotations.GenericGenerator;
  * @author User
  */
 @Entity
-public class NomorMeja implements Serializable {
+public class Meja implements Serializable {
     @Id @GeneratedValue(generator = "uuid")
     @GenericGenerator(name="uuid", strategy = "uuid2")
     private String id;
     
     @Column(nullable = false,unique = true)
-    private String nomorMeja;
+    private String namaMeja;
 
     //<editor-fold defaultstate="collapsed" desc="Getter Setter">
     public String getId() {
@@ -35,11 +35,11 @@ public class NomorMeja implements Serializable {
     }
     
     public String getNomorMeja() {
-        return nomorMeja;
+        return namaMeja;
     }
     
     public void setNomorMeja(String nomorMeja) {
-        this.nomorMeja = nomorMeja;
+        this.namaMeja = nomorMeja;
     }
     //</editor-fold>
     

@@ -52,7 +52,7 @@ Contributor(s):
     <mapping class="com.girsang.girsangkafe.model.master.Menu"/>
     <mapping class="com.girsang.girsangkafe.model.master.MenuAkses"/>
     <mapping class="com.girsang.girsangkafe.model.master.MenuDetail"/>
-    <mapping class="com.girsang.girsangkafe.model.master.NomorMeja"/>
+    <mapping class="com.girsang.girsangkafe.model.master.Meja"/>
     <mapping class="com.girsang.girsangkafe.model.master.Pelanggan"/>
     <mapping class="com.girsang.girsangkafe.model.master.SelisihBahanBaku"/>
   </session-factory>

@@ -1,14 +1,14 @@
 package com.girsang.girsangkafe.util.tabelmodel;
 
-import com.girsang.girsangkafe.model.master.NomorMeja;
+import com.girsang.girsangkafe.model.master.Meja;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class TabelModelNomorMeja extends AbstractTableModel{
 
-    List<NomorMeja> daftarNomorMeja;
+    List<Meja> daftarNomorMeja;
     
-    public TabelModelNomorMeja(List<NomorMeja> list){
+    public TabelModelNomorMeja(List<Meja> list){
         this.daftarNomorMeja=list;
     }
     @Override
@@ -31,7 +31,7 @@ public class TabelModelNomorMeja extends AbstractTableModel{
     }
     @Override
     public Object getValueAt(int row, int col) {
-        NomorMeja nM = daftarNomorMeja.get(row);
+        Meja nM = daftarNomorMeja.get(row);
         switch(col){
             case (0):return nM.getId();
             case (1):return nM.getNomorMeja();

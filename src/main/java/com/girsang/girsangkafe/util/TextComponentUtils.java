@@ -5,7 +5,6 @@ package com.girsang.girsangkafe.util;
  * and open the template in the editor.
  */
 
-import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,9 +15,9 @@ import java.text.ParseException;
 import java.util.Locale;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import org.apache.commons.lang3.text.WordUtils;
 import org.springframework.util.StringUtils;
 
 /** TextComponentUtils ini adalah utility yang bertugas untuk mengatur segala
@@ -178,10 +177,12 @@ public class TextComponentUtils {
         return sb.toString();
     }
     private static void convertToUpperCase(final javax.swing.JTextField textField) {
+        //textField.setText(WordUtils.capitalize(textField.getText()));
         textField.setText(textField.getText().toUpperCase());
     }
     private static void convertToUpperCase(final javax.swing.JTextArea textField) {
-        textField.setText(textField.getText().toUpperCase());
+        //textField.setText(textField.getText().toUpperCase());
+        textField.setText(WordUtils.capitalize(textField.getText()));
     }
 
 

@@ -3,7 +3,7 @@ package com.girsang.girsangkafe.UI.master;
 
 import com.girsang.girsangkafe.GirsangKafe;
 import com.girsang.girsangkafe.UI.menu.KategoriMenuDialog;
-import com.girsang.girsangkafe.model.master.NomorMeja;
+import com.girsang.girsangkafe.model.master.Meja;
 import com.girsang.girsangkafe.util.Notifikasi;
 import com.girsang.girsangkafe.util.UkuranTabel;
 import com.girsang.girsangkafe.util.tabelmodel.TabelModelKategoriMenu;
@@ -23,8 +23,8 @@ import javax.swing.event.ListSelectionEvent;
 
 public class NomorMejaPanel extends javax.swing.JPanel {
 
-    NomorMeja nomorMeja;
-    List<NomorMeja> daftarNomorMeja;
+    Meja nomorMeja;
+    List<Meja> daftarNomorMeja;
     private String idSelect;
     private JPopupMenu popup = new JPopupMenu();
     
@@ -55,7 +55,7 @@ public class NomorMejaPanel extends javax.swing.JPanel {
     }
     private void cariJabatan(){
         if (!idSelect.equals("")) {
-            nomorMeja = new NomorMeja();
+            nomorMeja = new Meja();
             nomorMeja = GirsangKafe.getMasterService().nomorMejaBerdasarkanId(idSelect);
         } else {
             nomorMeja = null;
@@ -76,12 +76,12 @@ public class NomorMejaPanel extends javax.swing.JPanel {
     
     private void baruJabatan(){
         nomorMeja = null;
-        NomorMeja nM = new NomorMejaDialog().showDialog(nomorMeja);
+        Meja nM = new NomorMejaDialog().showDialog(nomorMeja);
         if(nM!=null){
             boolean data = false;
-            nomorMeja = new NomorMeja();
+            nomorMeja = new Meja();
             nomorMeja = nM;
-            List<NomorMeja> list = GirsangKafe.getMasterService().semuaNomorMeja();
+            List<Meja> list = GirsangKafe.getMasterService().semuaNomorMeja();
             for(int j=0;j<list.size();j++){
                 if(list.get(j).getNomorMeja()
                         .equals(nomorMeja.getNomorMeja())&&
@@ -103,11 +103,11 @@ public class NomorMejaPanel extends javax.swing.JPanel {
         if(nomorMeja==null){
                 Notifikasi.pesanTidakAdaData();
             }else{
-               NomorMeja kM = new NomorMejaDialog().showDialog(nomorMeja);
+               Meja kM = new NomorMejaDialog().showDialog(nomorMeja);
                 if(kM!=null){
                     boolean data = false;
                     nomorMeja = kM;
-                    List<NomorMeja> list = GirsangKafe.getMasterService().semuaNomorMeja();
+                    List<Meja> list = GirsangKafe.getMasterService().semuaNomorMeja();
             for(int j=0;j<list.size();j++){
                 if(list.get(j).getNomorMeja()
                         .equals(nomorMeja.getNomorMeja())&&

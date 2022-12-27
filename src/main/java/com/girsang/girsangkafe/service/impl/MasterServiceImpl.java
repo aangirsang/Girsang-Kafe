@@ -29,7 +29,7 @@ public class MasterServiceImpl implements MasterService{
     @Autowired KategoriMenuDao kategoriMenuDao;
     @Autowired MenuAksesDao menuAksesDao;
     @Autowired MenuDao menuDao;
-    @Autowired NomorMejaDao nomorMejaDao;
+    @Autowired NamaMejaDao nomorMejaDao;
     @Autowired PelangganDao pelangganDao;
 
     //<editor-fold defaultstate="collapsed" desc="Bahan Baku">
@@ -216,29 +216,29 @@ public class MasterServiceImpl implements MasterService{
     
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public void simpan(NomorMeja nomorMeja) {
+    public void simpan(Meja nomorMeja) {
         nomorMejaDao.simpan(nomorMeja);
     }
     
     @Override
     @Transactional
-    public void hapus(NomorMeja nomorMeja) {
+    public void hapus(Meja nomorMeja) {
         nomorMejaDao.hapus(nomorMeja);
     }
     
     @Override
-    public NomorMeja nomorMejaBerdasarkanId(String id) {
-        return nomorMejaDao.nomorMejaBerdasarkanId(id);
+    public Meja nomorMejaBerdasarkanId(String id) {
+        return nomorMejaDao.namaMejaBerdasarkanId(id);
     }
     
     @Override
-    public List<NomorMeja> semuaNomorMeja() {
-        return nomorMejaDao.semuaNomorMeja();
+    public List<Meja> semuaNomorMeja() {
+        return nomorMejaDao.semuaNamaMeja();
     }
     
     @Override
-    public List<NomorMeja> nomorMejaBerdasaranNama(String nomorMeja) {
-        return nomorMejaDao.nomorMejaBerdasarkanNama(nomorMeja);
+    public List<Meja> nomorMejaBerdasaranNama(String nomorMeja) {
+        return nomorMejaDao.namaMejaBerdasarkanNama(nomorMeja);
     }
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Pelanggan">

@@ -11,7 +11,7 @@ import com.girsang.girsangkafe.model.master.Karyawan;
 import com.girsang.girsangkafe.model.master.KategoriMenu;
 import com.girsang.girsangkafe.model.master.Menu;
 import com.girsang.girsangkafe.model.master.MenuAkses;
-import com.girsang.girsangkafe.model.master.NomorMeja;
+import com.girsang.girsangkafe.model.master.Meja;
 import com.girsang.girsangkafe.model.master.Pelanggan;
 import com.girsang.girsangkafe.model.master.SelisihBahanBaku;
 import java.util.List;
@@ -73,11 +73,11 @@ public interface MasterService {
     public List<Menu> menuBerdasaranNama(String menu);
     
     //Nomor Meja
-    public void simpan (NomorMeja nomorMeja);
-    public void hapus (NomorMeja nomorMeja);
-    public NomorMeja nomorMejaBerdasarkanId(String id);
-    public List<NomorMeja> semuaNomorMeja();
-    public List<NomorMeja> nomorMejaBerdasaranNama(String nomorMeja);
+    public void simpan (Meja nomorMeja);
+    public void hapus (Meja nomorMeja);
+    public Meja nomorMejaBerdasarkanId(String id);
+    public List<Meja> semuaNomorMeja();
+    public List<Meja> nomorMejaBerdasaranNama(String nomorMeja);
     
     //Pelanggan
     public void simpan (Pelanggan pelanggan);

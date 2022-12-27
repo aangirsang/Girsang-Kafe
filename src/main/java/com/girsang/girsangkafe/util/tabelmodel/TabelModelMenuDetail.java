@@ -1,6 +1,7 @@
 package com.girsang.girsangkafe.util.tabelmodel;
 
 import com.girsang.girsangkafe.model.master.MenuDetail;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -42,5 +43,31 @@ public class TabelModelMenuDetail extends AbstractTableModel{
             default -> "";
         };
     }
-    
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        switch(columnIndex){
+            case 3 : return Integer.class;
+            default:return String.class;
+        }
+    }
+    @Override
+        public boolean isCellEditable(int row, int columnIndex) {
+            if (columnIndex == 3) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        @Override
+        public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+            MenuDetail detail = daftarMenuDetai.get(rowIndex);
+            switch(columnIndex){
+                case 3:
+                    Integer jumlah = (Integer) aValue;
+                    detail.setJumlah(jumlah);
+                    fireTableCellUpdated(rowIndex, columnIndex); // Total may also have changed
+                    break;
+                
+            }
+        }
 }

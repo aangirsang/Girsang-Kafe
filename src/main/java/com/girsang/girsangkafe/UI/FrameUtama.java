@@ -3,6 +3,7 @@ package com.girsang.girsangkafe.UI;
 import com.girsang.girsangkafe.GirsangKafe;
 import com.girsang.girsangkafe.model.master.Karyawan;
 import com.girsang.girsangkafe.util.popup.MasterPopUp;
+import com.girsang.girsangkafe.util.popup.PenjualanPopUp;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
@@ -35,17 +36,20 @@ public class FrameUtama extends javax.swing.JFrame {
     }
     
     private void tampil() {
-    JPopupMenu popUpMenuMaster = new JPopupMenu();
-    /*JPopupMenu popUpMenuPemasukan = new JPopupMenu();
-    JPopupMenu popUpMenuPengeluaran = new JPopupMenu();
-    JPopupMenu popUpPribadi = new JPopupMenu();
-    JPopupMenu popUpReport = new JPopupMenu();*/
-    MasterPopUp master = new MasterPopUp(tabbedPane, popUpMenuMaster, btnMaster);
-    /*PemasukanPopUp pemasukanPopUp = new PemasukanPopUp(tabbedPane, popUpMenuPemasukan, btnPemasukan);
-    PengeluaranPopUp pengeluaranPopUp = new PengeluaranPopUp(tabbedPane, popUpMenuPengeluaran, btnPengeluaran);
-    ReportPopUp reportPopUp = new ReportPopUp(tabbedPane, popUpReport, btnReport);
-    PribadiPopUp pribadiPopUp = new PribadiPopUp(tabbedPane, popUpPribadi, btnPribadi);
-    */}
+            JPopupMenu popUpMenuMaster = new JPopupMenu();
+            JPopupMenu popUpMenuPenjualan = new JPopupMenu();
+            /*JPopupMenu popUpMenuPemasukan = new JPopupMenu();
+            JPopupMenu popUpMenuPengeluaran = new JPopupMenu();
+            JPopupMenu popUpPribadi = new JPopupMenu();
+            JPopupMenu popUpReport = new JPopupMenu();*/
+            MasterPopUp master = new MasterPopUp(tabbedPane, popUpMenuMaster, btnMaster);
+            PenjualanPopUp penjualan = new PenjualanPopUp(tabbedPane, popUpMenuPenjualan, btnPenjualan);
+            /*PemasukanPopUp pemasukanPopUp = new PemasukanPopUp(tabbedPane, popUpMenuPemasukan, btnPemasukan);
+            PengeluaranPopUp pengeluaranPopUp = new PengeluaranPopUp(tabbedPane, popUpMenuPengeluaran, btnPengeluaran);
+            ReportPopUp reportPopUp = new ReportPopUp(tabbedPane, popUpReport, btnReport);
+            PribadiPopUp pribadiPopUp = new PribadiPopUp(tabbedPane, popUpPribadi, btnPribadi);
+            */
+    }
     public JTabbedPane getTabbedPane() {
         return tabbedPane;
     }
@@ -147,7 +151,7 @@ public class FrameUtama extends javax.swing.JFrame {
         panelToolbar = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         btnMaster = new javax.swing.JButton();
-        btnPemasukan = new javax.swing.JButton();
+        btnPenjualan = new javax.swing.JButton();
         btnPengeluaran = new javax.swing.JButton();
         btnPribadi = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
@@ -277,12 +281,13 @@ public class FrameUtama extends javax.swing.JFrame {
         btnMaster.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnMaster);
 
-        btnPemasukan.setText(" Pemasukan ");
-        btnPemasukan.setFocusable(false);
-        btnPemasukan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPemasukan.setPreferredSize(new java.awt.Dimension(55, 65));
-        btnPemasukan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnPemasukan);
+        btnPenjualan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/Transaksi.png"))); // NOI18N
+        btnPenjualan.setText("Penjualan");
+        btnPenjualan.setFocusable(false);
+        btnPenjualan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPenjualan.setPreferredSize(new java.awt.Dimension(55, 65));
+        btnPenjualan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnPenjualan);
 
         btnPengeluaran.setText(" Pengeluaran ");
         btnPengeluaran.setFocusable(false);
@@ -377,8 +382,8 @@ public class FrameUtama extends javax.swing.JFrame {
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnMaster;
-    private javax.swing.JButton btnPemasukan;
     private javax.swing.JButton btnPengeluaran;
+    private javax.swing.JButton btnPenjualan;
     private javax.swing.JButton btnPribadi;
     private javax.swing.JButton btnReport;
     private javax.swing.JLabel jLabel1;

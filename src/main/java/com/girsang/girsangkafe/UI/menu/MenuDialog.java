@@ -13,8 +13,14 @@ import com.girsang.girsangkafe.util.UkuranTabel;
 import com.girsang.girsangkafe.util.tabelmodel.TabelModelMenuDetail;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.AbstractAction;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 
 public class MenuDialog extends javax.swing.JDialog {
 
@@ -24,12 +30,16 @@ public class MenuDialog extends javax.swing.JDialog {
     KategoriMenu kategoriMenu;
     List<MenuDetail> daftarMenuDetail;
     List<KategoriMenu> daftarKategoriMenu;
+    
+    private String idSelect;
+    private JPopupMenu popup = new JPopupMenu();
     public MenuDialog() {
         super(FrameUtama.getInstance(), true);
         initComponents();
         initListener();
         tampilData();
         isiComboKategoriMenu();
+        popUpTabel();
         txtNamaBahanBaku.setEditable(false);
         txtSatuanPakai.setEditable(false);
         TextComponentUtils.setAutoUpperCaseText(100, txtNamaMenu);
@@ -109,7 +119,10 @@ public class MenuDialog extends javax.swing.JDialog {
         }
         return true;
     }
-    
+    private void tampilDataBahanBaku(){
+        tblBahanBaku.setModel(new TabelModelMenuDetail(daftarMenuDetail));
+        tblBahanBaku = new UkuranTabel().UkuranTabelMenuDetail(tblBahanBaku);
+    }
     private void tambahBahanBaku(){
         boolean data = false;
         if(validasiBahanBaku()){
@@ -130,8 +143,7 @@ public class MenuDialog extends javax.swing.JDialog {
             }
             if(data == false){
                 daftarMenuDetail.add(menuDetail);
-                tblBahanBaku.setModel(new TabelModelMenuDetail(daftarMenuDetail));
-                tblBahanBaku = new UkuranTabel().UkuranTabelMenuDetail(tblBahanBaku);
+                tampilDataBahanBaku();
                 clearBahanBaku();
             }
         }
@@ -142,6 +154,17 @@ public class MenuDialog extends javax.swing.JDialog {
             menu.setHarga(TextComponentUtils
                 .parseNumberToBigDecimal(txtHarga.getText()));
             menu.setMenuDetails(daftarMenuDetail);
+    }
+    private void popUpTabel(){
+        popup.add(new JMenuItem(new AbstractAction("Hapus Bahan Baku") {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (menuDetail!=null){
+                    daftarMenuDetail.remove(menuDetail);
+                    tampilData();
+                }
+            }
+        }));
     }
     private void initListener(){
         btnBatal.addActionListener((ActionEvent ae) -> {
@@ -173,6 +196,28 @@ public class MenuDialog extends javax.swing.JDialog {
                 kategoriMenu = daftarKategoriMenu.get(cboKategoriMenu.getSelectedIndex());
             }else{
                 kategoriMenu = null;
+            }
+        });
+        tblBahanBaku.getSelectionModel().addListSelectionListener((lse) -> {
+            if(tblBahanBaku.getSelectedRow() >=0){
+                menuDetail = new MenuDetail();
+                menuDetail = daftarMenuDetail.get(tblBahanBaku.getSelectedRow());
+            }
+        });
+        tblBahanBaku.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    JTable source = (JTable) e.getSource();
+                    int row = source.rowAtPoint(e.getPoint());
+                    int column = source.columnAtPoint(e.getPoint());
+
+                    if (!source.isRowSelected(row)) {
+                        source.changeSelection(row, column, false, false);
+                    }
+
+                    popup.show(e.getComponent(), e.getX(), e.getY());
+                }
             }
         });
     }

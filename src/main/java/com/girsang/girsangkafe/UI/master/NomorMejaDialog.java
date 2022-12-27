@@ -1,7 +1,7 @@
 package com.girsang.girsangkafe.UI.master;
 
 import com.girsang.girsangkafe.UI.FrameUtama;
-import com.girsang.girsangkafe.model.master.NomorMeja;
+import com.girsang.girsangkafe.model.master.Meja;
 import com.girsang.girsangkafe.util.Notifikasi;
 import com.girsang.girsangkafe.util.PesanJO;
 import com.girsang.girsangkafe.util.TextComponentUtils;
@@ -9,17 +9,17 @@ import java.awt.event.ActionEvent;
 
 public class NomorMejaDialog extends javax.swing.JDialog {
 
-    NomorMeja nomorMeja;
+    Meja nomorMeja;
     public NomorMejaDialog() {
         super(FrameUtama.getInstance(), true);
         initComponents();
         initListener();
         TextComponentUtils.setAutoUpperCaseText(100, txtNomorMeja);
     }
-    public NomorMeja showDialog(NomorMeja nM){
+    public Meja showDialog(Meja nM){
         if(nM!=null){
             setTitle(PesanJO.namaDialog.NOMORMEJA_UBAH);
-            nomorMeja = new NomorMeja();
+            nomorMeja = new Meja();
             clear();
             loadModelToFom(nM);
         }else{
@@ -36,13 +36,13 @@ public class NomorMejaDialog extends javax.swing.JDialog {
     private void clear(){
         txtNomorMeja.setText("");
     }
-    private void loadModelToFom(NomorMeja nM){
+    private void loadModelToFom(Meja nM){
         nomorMeja = nM;
         txtNomorMeja.setText(nomorMeja.getNomorMeja());
     }
     private void loadFormToModel(){
         if(nomorMeja==null){
-                nomorMeja = new NomorMeja();
+                nomorMeja = new Meja();
             }
             nomorMeja.setNomorMeja(txtNomorMeja.getText());
     }
@@ -98,9 +98,9 @@ public class NomorMejaDialog extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSimpan)
-                    .addComponent(btnBatal))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBatal)
+                    .addComponent(btnSimpan))
                 .addContainerGap())
         );
 
@@ -117,7 +117,7 @@ public class NomorMejaDialog extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 34, Short.MAX_VALUE)
                 .addComponent(txtNomorMeja, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

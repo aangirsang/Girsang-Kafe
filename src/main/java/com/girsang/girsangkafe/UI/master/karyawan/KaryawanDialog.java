@@ -28,6 +28,7 @@ public class KaryawanDialog extends javax.swing.JDialog {
         TextComponentUtils.setAutoUpperCaseText(100, txtWhatsApp);
         TextComponentUtils.setAutoUpperCaseText(100, txtTiktok);
         TextComponentUtils.setAutoUpperCaseText(100, txtTwitter);
+        TextComponentUtils.setAutoUpperCaseText(txtAlamat);
     }
     public Karyawan showDialog(Karyawan k){
         if(k!=null){

@@ -42,15 +42,18 @@ public interface PesanJO {
         String PEMASUKAN = "Data Pemasukan";
     }
     interface namaMenu{
+        String JABATAN = "Daftar Jabatan";
+        String KARYAWAN = "Daftar Karyawan";
+        String DATA_KARYAWAN = "Data Karyawan";
         String BAHANBAKU = "Bahan Baku";
-        String MENU = "Menu";
+        String DATA_MENU = "Data Menu";
+        String MENU = "Daftar Menu";
         String KATEGORI_MENU = "Kategori Menu";
         String MENUAKSES = "Menu Akses";
         String KELOMPOK_MENU = "Kelompok Menu";
-        String PELANGGAN = "Pelanggan";
-        String JABATAN = "Jabatan";
         String MEJA = "Meja";
-        String KARYAWAN = "Karyawan";
+        String DAFTAR_MEJA = "Daftar Meja";
+        String PELANGGAN = "Pelanggan";
         String PEMASUKAN = "Pemasukan";
         String PESANAN = "Pesanan";
         String PENGELUARAN = "Pengeluaran";

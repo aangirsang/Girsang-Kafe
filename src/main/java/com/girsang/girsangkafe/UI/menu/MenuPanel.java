@@ -54,7 +54,7 @@ public class MenuPanel extends javax.swing.JPanel {
         addPopupmenu();
         tabel.setDefaultRenderer(BigDecimal.class, new BigDecimalRenderer());
     }
-    private void cariBahanBaku(){
+    private void cariMenu(){
         if (!idSelect.equals("")) {
             menu = new Menu();
             menu = GirsangKafe.getMasterService().menuBerdasarkanId(idSelect);
@@ -100,7 +100,7 @@ public class MenuPanel extends javax.swing.JPanel {
         }
     }
     private void editBahanBaku(){
-        cariBahanBaku();
+        cariMenu();
         if(menu==null){
                 Notifikasi.pesanTidakAdaData();
             }else{
@@ -127,7 +127,7 @@ public class MenuPanel extends javax.swing.JPanel {
             }
     }
     private void hapusMenu(){
-        cariBahanBaku();
+        cariMenu();
         if(menu==null){
                 Notifikasi.pesanTidakAdaData();
             }else{
