@@ -14,6 +14,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,75 +33,77 @@ public class Menu implements Serializable{
     @Column(nullable = false, unique = true)
     private String namaMenu;
     
-   private KategoriMenu kategoriMenu;
-   
-   private BigDecimal harga = BigDecimal.ZERO;
-   
-   @OneToMany(mappedBy = "menu",cascade = CascadeType.ALL)
-   @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-   private List<MenuDetail> menuDetails = new ArrayList<MenuDetail>();
+    @ManyToOne
+    @JoinColumn(name="kategoriMenu")
+    private KategoriMenu kategoriMenu;
 
-   //<editor-fold defaultstate="collapsed" desc="Getter Setter">
-   public String getId() {
-       return id;
-   }
-   
-   public void setId(String id) {
-       this.id = id;
-   }
-   
-   public String getNamaMenu() {
-       return namaMenu;
-   }
-   
-   public void setNamaMenu(String namaMenu) {
-       this.namaMenu = namaMenu;
-   }
-   
-   public KategoriMenu getKategoriMenu() {
-       return kategoriMenu;
-   }
-   
-   public void setKategoriMenu(KategoriMenu kategoriMenu) {
-       this.kategoriMenu = kategoriMenu;
-   }
-   
-   public BigDecimal getHarga() {
-       return harga;
-   }
-   
-   public void setHarga(BigDecimal harga) {
-       this.harga = harga;
-   }
-   
-   public List<MenuDetail> getMenuDetails() {
-       return menuDetails;
-   }
-   
-   public void setMenuDetails(List<MenuDetail> menuDetails) {
-       this.menuDetails = menuDetails;
-       if(menuDetails !=null && !menuDetails.isEmpty()){
-           for(MenuDetail menu : menuDetails){
-               menu.setMenu(this);
-           }
-       }
-   }
-    //</editor-fold>
-   
-   public void tambahMenuDetails(MenuDetail detail){
-       if(menuDetails==null){
-           menuDetails = new ArrayList<>();
-       }
-       menuDetails.add(detail);
-       detail.setMenu(this);
-   }
-   
-   public void hapusMenuDetail(MenuDetail detail){
-       if(menuDetails==null){
-           menuDetails = new ArrayList<>();
-       }
-       menuDetails.remove(detail);
-       detail.setMenu(null);
-   }
+    private BigDecimal harga = BigDecimal.ZERO;
+
+    @OneToMany(mappedBy = "menu",cascade = CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    private List<MenuDetail> menuDetails = new ArrayList<MenuDetail>();
+
+    //<editor-fold defaultstate="collapsed" desc="Getter Setter">
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNamaMenu() {
+        return namaMenu;
+    }
+
+    public void setNamaMenu(String namaMenu) {
+        this.namaMenu = namaMenu;
+    }
+
+    public KategoriMenu getKategoriMenu() {
+        return kategoriMenu;
+    }
+
+    public void setKategoriMenu(KategoriMenu kategoriMenu) {
+        this.kategoriMenu = kategoriMenu;
+    }
+
+    public BigDecimal getHarga() {
+        return harga;
+    }
+
+    public void setHarga(BigDecimal harga) {
+        this.harga = harga;
+    }
+
+    public List<MenuDetail> getMenuDetails() {
+        return menuDetails;
+    }
+
+    public void setMenuDetails(List<MenuDetail> menuDetails) {
+        this.menuDetails = menuDetails;
+        if(menuDetails !=null && !menuDetails.isEmpty()){
+            for(MenuDetail menu : menuDetails){
+                menu.setMenu(this);
+            }
+        }
+    }
+     //</editor-fold>
+
+    public void tambahMenuDetails(MenuDetail detail){
+        if(menuDetails==null){
+            menuDetails = new ArrayList<>();
+        }
+        menuDetails.add(detail);
+        detail.setMenu(this);
+    }
+
+    public void hapusMenuDetail(MenuDetail detail){
+        if(menuDetails==null){
+            menuDetails = new ArrayList<>();
+        }
+        menuDetails.remove(detail);
+        detail.setMenu(null);
+    }
    
 }

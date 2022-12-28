@@ -32,4 +32,5 @@ public class NamaMejaDao extends BaseDaoHibernate<Meja>{
                 + "Order By b.namaMeja Asc")
                 .list();
     }
+    
 }

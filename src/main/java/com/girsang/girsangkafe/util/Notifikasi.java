@@ -18,6 +18,12 @@ public class Notifikasi {
                 PesanJO.pesan.INFORMASI_TITLE,
                 JOptionPane.INFORMATION_MESSAGE);
     }
+    public static void pesanError(String pesan){
+        JOptionPane.showMessageDialog(null, 
+                pesan,
+                PesanJO.pesan.PERHATIAN_TITLE,
+                JOptionPane.ERROR_MESSAGE);
+    }
     public static void pesanTidakAdaData(){
         JOptionPane.showMessageDialog(null, 
                 PesanJO.pesan.TIDAK_ADA_DATA, 
@@ -64,6 +70,19 @@ public class Notifikasi {
         String ObjButtons[] = {"Ya", "Tidak"};
         int option = JOptionPane.showOptionDialog(null, 
                 PesanJO.pesan.HAPUS_DATA, 
+                PesanJO.pesan.KONFIRMASI_TITLE,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,ObjButtons,ObjButtons[1]);
+        if(option==JOptionPane.YES_OPTION){
+            return true;
+        }
+        return false;
+    }
+    public static Boolean pesanValidasiHapusALL(){
+        String ObjButtons[] = {"Ya", "Tidak"};
+        int option = JOptionPane.showOptionDialog(null, 
+                PesanJO.pesan.HAPUS_DATA_ALL, 
                 PesanJO.pesan.KONFIRMASI_TITLE,
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
