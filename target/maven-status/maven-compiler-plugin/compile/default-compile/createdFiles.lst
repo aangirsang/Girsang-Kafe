@@ -2,6 +2,7 @@ com\girsang\girsangkafe\Dao\master\NamaMejaDao.class
 com\girsang\girsangkafe\UI\master\NomorMejaPanel$4.class
 com\girsang\girsangkafe\UI\menu\MenuPanel$6.class
 com\girsang\girsangkafe\util\popup\MasterPopUp$6.class
+com\girsang\girsangkafe\UI\master\AutoNomorMejaDialog.class
 com\girsang\girsangkafe\util\PesanJO$pesan.class
 com\girsang\girsangkafe\model\master\MenuDetail.class
 com\girsang\girsangkafe\util\TextComponentUtils.class
@@ -29,7 +30,6 @@ com\girsang\girsangkafe\UI\master\karyawan\JabatanPanel$3.class
 com\girsang\girsangkafe\util\tabelmodel\TabelModelKaryawan.class
 com\girsang\girsangkafe\service\MasterService.class
 com\girsang\girsangkafe\UI\menu\BahanBakuPilihDialog.class
-com\girsang\girsangkafe\UI\menu\MenuDialog$2.class
 com\girsang\girsangkafe\UI\master\karyawan\KaryawanPanel$1.class
 com\girsang\girsangkafe\util\TextComponentUtils$IntegerMasking.class
 com\girsang\girsangkafe\UI\master\karyawan\JabatanPanel$2.class
@@ -43,8 +43,8 @@ com\girsang\girsangkafe\UI\menu\BahanBakuPilihDialog$4.class
 com\girsang\girsangkafe\util\PesanJO$namaTab.class
 com\girsang\girsangkafe\model\master\Meja.class
 com\girsang\girsangkafe\util\UkuranTabel.class
-com\girsang\girsangkafe\UI\menu\MenuDialog$1.class
 com\girsang\girsangkafe\util\popup\MasterPopUp$5.class
+com\girsang\girsangkafe\UI\transaksi\XOButton.class
 com\girsang\girsangkafe\model\master\Karyawan.class
 com\girsang\girsangkafe\util\popup\PenjualanPopUp.class
 com\girsang\girsangkafe\util\TextComponentUtils$2.class
@@ -56,6 +56,7 @@ com\girsang\girsangkafe\UI\menu\BahanBakuPilihDialog$3.class
 com\girsang\girsangkafe\UI\master\karyawan\KaryawanPanel$2.class
 com\girsang\girsangkafe\util\popup\MasterPopUp.class
 com\girsang\girsangkafe\UI\master\NomorMejaPanel$1.class
+com\girsang\girsangkafe\UI\master\NomorMejaPanel$7.class
 com\girsang\girsangkafe\UI\master\karyawan\KaryawanPanel.class
 com\girsang\girsangkafe\model\master\Jabatan.class
 com\girsang\girsangkafe\util\Notifikasi.class
@@ -81,7 +82,6 @@ com\girsang\girsangkafe\UI\menu\BahanBakuPilihDialog$2.class
 com\girsang\girsangkafe\UI\menu\BahanBakuPanel.class
 com\girsang\girsangkafe\UI\security\MenuAksesPanel.class
 com\girsang\girsangkafe\util\PesanJO$namaMenu.class
-com\girsang\girsangkafe\UI\menu\MenuDialog.class
 com\girsang\girsangkafe\UI\security\MenuAksesPanel$4.class
 com\girsang\girsangkafe\UI\menu\KategoriMenuPanel$5.class
 com\girsang\girsangkafe\UI\master\karyawan\JabatanPanel.class
@@ -106,7 +106,6 @@ com\girsang\girsangkafe\UI\menu\MenuPanel.class
 com\girsang\girsangkafe\UI\master\NomorMejaDialog.class
 com\girsang\girsangkafe\UI\master\karyawan\JabatanPanel$5.class
 com\girsang\girsangkafe\util\popup\PenjualanPopUp$1.class
-com\girsang\girsangkafe\service\impl\MasterServiceImpl.class
 com\girsang\girsangkafe\UI\menu\KategoriMenuDialog.class
 com\girsang\girsangkafe\util\PesanJO.class
 com\girsang\girsangkafe\UI\menu\BahanBakuDialog.class

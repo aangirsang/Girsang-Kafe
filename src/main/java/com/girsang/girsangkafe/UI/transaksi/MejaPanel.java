@@ -38,40 +38,12 @@ public class MejaPanel extends javax.swing.JPanel {
         initComponents();
         tambah();
     }
-    private void tambahButton(){
-        mainPanel = new JPanel();
-        btn = new JButton("Coba Button");
-        Dimension size = new Dimension(50, 30);
-        btn.setMaximumSize(size);
-        btn.setMinimumSize(size);
-        btn.setPreferredSize(size);
-        mainPanel.add(btn);
-        mainPanel.revalidate();
-        
-        
-    }
     private void tambah(){
-        int rows = 15;
         int columns = 9;
         int column = 0, row = 0;
-        JLabel label;
-        JButton button;
+        XOButton button;
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints constraints= new GridBagConstraints();
-
-        /*for(int rowIndex = 0; rowIndex < rows; rowIndex++){
-        for(int columnIndex = 0 ; columnIndex < columns; columnIndex++){
-        button = new JButton(String.format("table row:%d, column:%d ", rowIndex+1,columnIndex+1));
-        Dimension size = new Dimension(150, 100);
-        button.setMaximumSize(size);
-        button.setMinimumSize(size);
-        button.setPreferredSize(size);
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.gridx = columnIndex;
-        constraints.gridy = rowIndex;
-        mainPanel.add(button, constraints);
-        }
-        }*/
         daftarMeja = GirsangKafe.getMasterService().semuaNomorMeja();
         double x = 0;
         for(int m=0;m<daftarMeja.size();m++){
@@ -88,7 +60,7 @@ public class MejaPanel extends javax.swing.JPanel {
                         column =  (int) (m-(columns * x));
                     }
             }
-            button = new JButton(daftarMeja.get(m).getNomorMeja());
+            button = new XOButton(daftarMeja.get(m).getNomorMeja());
             Dimension size = new Dimension(200, 150);
             button.setMaximumSize(size);
             button.setMinimumSize(size);
@@ -97,7 +69,6 @@ public class MejaPanel extends javax.swing.JPanel {
             constraints.gridx = column;
             constraints.gridy = row;
             mainPanel.add(button, constraints);
-            System.out.println("column "+column+", row "+row);
         }
             
     }

@@ -11,13 +11,18 @@ import com.girsang.girsangkafe.util.PesanJO;
 import com.girsang.girsangkafe.util.TextComponentUtils;
 import com.girsang.girsangkafe.util.UkuranTabel;
 import com.girsang.girsangkafe.util.tabelmodel.TabelModelMenuDetail;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
@@ -148,6 +153,18 @@ public class MenuDialog extends javax.swing.JDialog {
             }
         }
     }
+    private void pilihFoto(){
+        try{
+            JFileChooser pilih = new JFileChooser();
+            pilih.showOpenDialog(this);
+            File file = pilih.getSelectedFile();
+            ImageIcon icon = new ImageIcon(file.toString());
+            Image img = icon.getImage()
+                    .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT);
+        }catch(Exception e){
+            Notifikasi.pesanError(e.getMessage());
+        }
+    }
     private void loadFormToModel(){
             menu.setNamaMenu(txtNamaMenu.getText());
             menu.setKategoriMenu(kategoriMenu);
@@ -190,6 +207,9 @@ public class MenuDialog extends javax.swing.JDialog {
         });
         btnMasukkanBahanBaku.addActionListener((ActionEvent ae)->{
             tambahBahanBaku();
+        });
+        btnFoto.addActionListener((ActionEvent ae)->{
+            pilihFoto();
         });
         cboKategoriMenu.addItemListener((ItemEvent e) -> {
             if(cboKategoriMenu.getSelectedIndex() >=0){
@@ -235,6 +255,8 @@ public class MenuDialog extends javax.swing.JDialog {
         cboKategoriMenu = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtHarga = new javax.swing.JTextField();
+        lblFoto = new javax.swing.JLabel();
+        btnFoto = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btnCariBahanBaku = new javax.swing.JButton();
@@ -304,13 +326,25 @@ public class MenuDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        lblFoto.setText("jLabel7");
+        lblFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnFoto.setText("Cari Foto");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -318,7 +352,10 @@ public class MenuDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btnFoto))
         );
 
         jTabbedPane1.addTab("Data Menu", jPanel1);
@@ -480,6 +517,7 @@ public class MenuDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnCariBahanBaku;
+    private javax.swing.JButton btnFoto;
     private javax.swing.JButton btnMasukkanBahanBaku;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cboKategoriMenu;
@@ -496,6 +534,7 @@ public class MenuDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblFoto;
     private javax.swing.JTable tblBahanBaku;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtJumlahPakai;

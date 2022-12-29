@@ -5,6 +5,7 @@ D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\model\master
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\util\Notifikasi.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\util\tabelmodel\TabelModelJabatan.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\Dao\master\KaryawanDao.java
+D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\UI\transaksi\XOButton.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\util\PesanJO.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\UI\menu\KategoriMenuPanel.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\model\master\Jabatan.java
@@ -35,6 +36,7 @@ D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\UI\security\
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\util\UkuranTabel.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\model\master\MenuAkses.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\util\tabelmodel\TabelModelKaryawan.java
+D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\UI\master\AutoNomorMejaDialog.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\UI\master\karyawan\KaryawanPanel.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\util\tabelmodel\TabelModelMenuDetail.java
 D:\Andri\Project\Girsang-Kafe\src\main\java\com\girsang\girsangkafe\service\MasterService.java
