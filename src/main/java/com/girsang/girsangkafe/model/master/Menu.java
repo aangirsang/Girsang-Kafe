@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
@@ -25,21 +26,27 @@ import org.hibernate.annotations.GenericGenerator;
  * @author User
  */
 @Entity
-public class Menu implements Serializable{
-    @Id @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name="uuid", strategy = "uuid2")
+public class Menu implements Serializable {
+
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
+
     @Column(nullable = false, unique = true)
     private String namaMenu;
-    
+
     @ManyToOne
-    @JoinColumn(name="kategoriMenu")
+    @JoinColumn(name = "kategoriMenu")
     private KategoriMenu kategoriMenu;
+
+    @Lob
+    @Column(name="fotoMenu")
+    private byte[] fotoMenu;
 
     private BigDecimal harga = BigDecimal.ZERO;
 
-    @OneToMany(mappedBy = "menu",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     private List<MenuDetail> menuDetails = new ArrayList<MenuDetail>();
 
@@ -82,28 +89,37 @@ public class Menu implements Serializable{
 
     public void setMenuDetails(List<MenuDetail> menuDetails) {
         this.menuDetails = menuDetails;
-        if(menuDetails !=null && !menuDetails.isEmpty()){
-            for(MenuDetail menu : menuDetails){
+        if (menuDetails != null && !menuDetails.isEmpty()) {
+            for (MenuDetail menu : menuDetails) {
                 menu.setMenu(this);
             }
         }
     }
-     //</editor-fold>
+    public byte[] getFotoMenu() {
+        return fotoMenu;
+    }
 
-    public void tambahMenuDetails(MenuDetail detail){
-        if(menuDetails==null){
-            menuDetails = new ArrayList<>();
+    public void setFotoMenu(byte[] fotoMenu) {
+        this.fotoMenu = fotoMenu;
+    }
+    //</editor-fold>
+
+    public void tambahMenuDetails(MenuDetail detail) {
+        if (getMenuDetails() == null) {
+            setMenuDetails(new ArrayList<>());
         }
-        menuDetails.add(detail);
+        getMenuDetails().add(detail);
         detail.setMenu(this);
     }
 
-    public void hapusMenuDetail(MenuDetail detail){
-        if(menuDetails==null){
-            menuDetails = new ArrayList<>();
+    public void hapusMenuDetail(MenuDetail detail) {
+        if (getMenuDetails() == null) {
+            setMenuDetails(new ArrayList<>());
         }
-        menuDetails.remove(detail);
+        getMenuDetails().remove(detail);
         detail.setMenu(null);
     }
-   
+
+    
+
 }

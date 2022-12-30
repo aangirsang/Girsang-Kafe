@@ -13,11 +13,13 @@ import com.girsang.girsangkafe.util.UkuranTabel;
 import com.girsang.girsangkafe.util.tabelmodel.TabelModelMenuDetail;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractAction;
@@ -26,6 +28,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.h2.util.IOUtils;
 
 public class MenuDialog extends javax.swing.JDialog {
 
@@ -35,6 +39,9 @@ public class MenuDialog extends javax.swing.JDialog {
     KategoriMenu kategoriMenu;
     List<MenuDetail> daftarMenuDetail;
     List<KategoriMenu> daftarKategoriMenu;
+    
+    byte[] photo = null;
+    String namaPhoto;
     
     private String idSelect;
     private JPopupMenu popup = new JPopupMenu();
@@ -86,6 +93,7 @@ public class MenuDialog extends javax.swing.JDialog {
     private void clearAll(){
         txtNamaMenu.setText("");
         txtHarga.setText("0");
+        lblFoto.setText("");
         
         isiComboKategoriMenu();
         cboKategoriMenu.setSelectedItem(null);
@@ -103,6 +111,14 @@ public class MenuDialog extends javax.swing.JDialog {
         txtHarga.setText(TextComponentUtils.formatNumber(m.getHarga()));
         cboKategoriMenu.setSelectedItem(m.getKategoriMenu().getKategoriMenu());
         
+        if(m.getFotoMenu()!=null){
+            byte[] fotoTampil = m.getFotoMenu();
+            ImageIcon ii = new ImageIcon(fotoTampil);
+            Image img = ii.getImage()
+                    .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon ic = new ImageIcon(img);
+            lblFoto.setIcon(ic);
+        }
         tampilData();
     }
     
@@ -154,15 +170,33 @@ public class MenuDialog extends javax.swing.JDialog {
         }
     }
     private void pilihFoto(){
-        try{
-            JFileChooser pilih = new JFileChooser();
-            pilih.showOpenDialog(this);
-            File file = pilih.getSelectedFile();
+        
+        JFileChooser pilih = new JFileChooser();
+        pilih.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        pilih.setFileFilter(new FileNameExtensionFilter("File Foto", "jpg","jpeg","png"));
+        pilih.showOpenDialog(this);
+        File file = pilih.getSelectedFile();
+        if(file!=null){
             ImageIcon icon = new ImageIcon(file.toString());
             Image img = icon.getImage()
-                    .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT);
-        }catch(Exception e){
-            Notifikasi.pesanError(e.getMessage());
+                    .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_REPLICATE);
+            ImageIcon ic = new ImageIcon(img);
+            lblFoto.setIcon(ic);
+            namaPhoto = file.getAbsolutePath();
+            try{
+                File image = new File(namaPhoto);
+                FileInputStream fis = new FileInputStream(image);
+                ByteArrayOutputStream boa = new ByteArrayOutputStream();
+
+                byte[] buf = new byte[1024];
+                for(int readNum; (readNum=fis.read(buf))!=-1;){
+                    boa.write(buf, 0 , readNum);
+                }
+
+                photo = boa.toByteArray();
+            }catch(Exception e){
+                Notifikasi.pesanError(e.getMessage());
+            }
         }
     }
     private void loadFormToModel(){
@@ -171,6 +205,7 @@ public class MenuDialog extends javax.swing.JDialog {
             menu.setHarga(TextComponentUtils
                 .parseNumberToBigDecimal(txtHarga.getText()));
             menu.setMenuDetails(daftarMenuDetail);
+            menu.setFotoMenu(photo);
     }
     private void popUpTabel(){
         popup.add(new JMenuItem(new AbstractAction("Hapus Bahan Baku") {
