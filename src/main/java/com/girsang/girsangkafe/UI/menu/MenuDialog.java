@@ -6,8 +6,10 @@ import com.girsang.girsangkafe.model.master.BahanBaku;
 import com.girsang.girsangkafe.model.master.KategoriMenu;
 import com.girsang.girsangkafe.model.master.Menu;
 import com.girsang.girsangkafe.model.master.MenuDetail;
+import com.girsang.girsangkafe.util.MissingIcon;
 import com.girsang.girsangkafe.util.Notifikasi;
 import com.girsang.girsangkafe.util.PesanJO;
+import com.girsang.girsangkafe.util.StretchIcon;
 import com.girsang.girsangkafe.util.TextComponentUtils;
 import com.girsang.girsangkafe.util.UkuranTabel;
 import com.girsang.girsangkafe.util.tabelmodel.TabelModelMenuDetail;
@@ -40,7 +42,7 @@ public class MenuDialog extends javax.swing.JDialog {
     List<MenuDetail> daftarMenuDetail;
     List<KategoriMenu> daftarKategoriMenu;
     
-    byte[] photo = null;
+    byte[] photo;
     String namaPhoto;
     
     private String idSelect;
@@ -67,6 +69,7 @@ public class MenuDialog extends javax.swing.JDialog {
             setTitle(PesanJO.namaDialog.MENU_TAMBAH);
             menu = new Menu();
             daftarMenuDetail = new ArrayList<>();
+            photo = null;
         }
         
         
@@ -114,10 +117,14 @@ public class MenuDialog extends javax.swing.JDialog {
         if(m.getFotoMenu()!=null){
             byte[] fotoTampil = m.getFotoMenu();
             ImageIcon ii = new ImageIcon(fotoTampil);
-            Image img = ii.getImage()
-                    .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_SMOOTH);
-            ImageIcon ic = new ImageIcon(img);
+            //Image img = ii.getImage()
+            //        .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_SMOOTH);
+            //ImageIcon ic = new ImageIcon(img);
+            StretchIcon ic = new StretchIcon(ii.getImage());
             lblFoto.setIcon(ic);
+        }else{
+            MissingIcon mi = new MissingIcon();
+            lblFoto.setIcon(mi);
         }
         tampilData();
     }
@@ -169,6 +176,9 @@ public class MenuDialog extends javax.swing.JDialog {
             }
         }
     }
+    private void tampilGambar(){
+        
+    }
     private void pilihFoto(){
         
         JFileChooser pilih = new JFileChooser();
@@ -177,23 +187,26 @@ public class MenuDialog extends javax.swing.JDialog {
         pilih.showOpenDialog(this);
         File file = pilih.getSelectedFile();
         if(file!=null){
-            ImageIcon icon = new ImageIcon(file.toString());
-            Image img = icon.getImage()
-                    .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_REPLICATE);
-            ImageIcon ic = new ImageIcon(img);
+            //ImageIcon icon = new ImageIcon(file.toString());
+            //Image img = icon.getImage()
+            //        .getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_REPLICATE);
+            //ImageIcon ic = new ImageIcon(img);
+            
+            StretchIcon ic = new StretchIcon(file.toString());
             lblFoto.setIcon(ic);
             namaPhoto = file.getAbsolutePath();
             try{
                 File image = new File(namaPhoto);
-                FileInputStream fis = new FileInputStream(image);
+                FileInputStream fis = new FileInputStream(ic.toString());
                 ByteArrayOutputStream boa = new ByteArrayOutputStream();
 
                 byte[] buf = new byte[1024];
                 for(int readNum; (readNum=fis.read(buf))!=-1;){
                     boa.write(buf, 0 , readNum);
                 }
-
-                photo = boa.toByteArray();
+                if(photo==null){
+                    photo = boa.toByteArray();
+                }
             }catch(Exception e){
                 Notifikasi.pesanError(e.getMessage());
             }
@@ -378,7 +391,7 @@ public class MenuDialog extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                            .addComponent(btnFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -388,8 +401,8 @@ public class MenuDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFoto))
         );
 
@@ -470,8 +483,8 @@ public class MenuDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMasukkanBahanBaku)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -487,7 +500,7 @@ public class MenuDialog extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -538,7 +551,7 @@ public class MenuDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
